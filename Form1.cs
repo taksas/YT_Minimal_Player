@@ -361,6 +361,19 @@ namespace YT_Minimal_Player
         [DllImport("User32.dll", EntryPoint = "PostMessage")]
         public static extern Int32 PostMessage(Int32 hWnd, Int32 Msg, Int32 wParam, Int32 lParam);
 
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool SetForegroundWindow(IntPtr hWnd);
+        [DllImport("user32.dll")]
+        private static extern int GetWindowThreadProcessId(IntPtr hWnd, out int lpdwProcessId);
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern bool AttachThreadInput(int idAttach, int idAttachTo, bool fAttach);
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern bool SystemParametersInfo(uint uiAction, uint uiParam, IntPtr pvParam, uint fWinIni);
+
+
 
 
         private void WebView_NavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
@@ -467,6 +480,7 @@ namespace YT_Minimal_Player
   //      private HotKey hotkeyNotify;
         private HotKey hotkeyb15s;
         private HotKey hotkeya15s;
+        const int WM_HOTKEY = 0x312;
 
         protected override void OnLoad(EventArgs e)
         {
@@ -494,7 +508,8 @@ namespace YT_Minimal_Player
         // ホットキーの入力メッセージを処理する
         protected override void WndProc(ref Message m)
         {
-            const int WM_HOTKEY = 0x312;
+
+
 
             if (m.Msg == WM_HOTKEY && m.LParam == hotkeyStartStop.LParam)
             {
@@ -515,9 +530,12 @@ namespace YT_Minimal_Player
             else if (m.Msg == WM_HOTKEY && m.LParam == hotkeyb15s.LParam)
             {
                 // フォームをアクティブにする
-                Activate();
-                SendKeys.Send("J");
-                SendKeys.Send("{ENTER}");
+                              Activate();
+                             SendKeys.Send("J");
+                             SendKeys.Send("{ENTER}");
+
+
+                
             }
 
             else if (m.Msg == WM_HOTKEY && m.LParam == hotkeya15s.LParam)
