@@ -117,7 +117,7 @@ namespace YT_Minimal_Player
             }
             this.TopMost = !this.TopMost;
 
-
+            this.ShowInTaskbar = false;
 
             /*
     * 表示位置(Top)を調整。
@@ -445,7 +445,7 @@ namespace YT_Minimal_Player
         {
             WebView.Size = this.Size;
         }
-
+/*
         private void notifyIcon_MouseClick(object sender, MouseEventArgs e)
         {
 
@@ -461,7 +461,7 @@ namespace YT_Minimal_Player
                 m = 0;
             }
         }
-
+*/
 
         private HotKey hotkeyStartStop;
   //      private HotKey hotkeyNotify;

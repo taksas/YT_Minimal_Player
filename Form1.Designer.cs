@@ -56,9 +56,8 @@ namespace YT_Minimal_Player
             // notifyIcon
             // 
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
-            this.notifyIcon.Text = "notifyIcon1";
+            this.notifyIcon.Text = "YT_Minimal_Player";
             this.notifyIcon.Visible = true;
-            this.notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseClick);
             // 
             // Form1
             // 
@@ -66,6 +65,7 @@ namespace YT_Minimal_Player
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(515, 282);
             this.Controls.Add(this.WebView);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.WebView)).EndInit();
